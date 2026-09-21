@@ -1,0 +1,63 @@
+Name : Shelke Rushikesh Sunil
+FRN-16JO726/034
+Batch:july (offline)
+
+Q1)
+	void main(){
+	char str[20];
+	int count=1;
+	printf("\nEnter the string: ");
+	scanf("%s",&str);
+	int n=strlen(str);
+	for(int i=0;i<n;i++){
+		if(str[i]=='-'){
+			count++;
+		}
+		
+	}
+	printf("\nThe total words are:%d",count);
+}
+
+Q2
+
+	void main(){
+	int n;
+	printf("\nEnter the end of series");
+	scanf("%d",&n);
+	for(int i=0;i<n;i++){
+		for(int j=0;j<=i;j++){
+			printf("1");
+		}
+		if(i<n-1){
+			printf("+");
+		}
+	}
+}
+
+Q3)
+
+	typedef struct song{
+	int song_id;
+	char title[10];
+	char artist[10];
+	float duration;
+}song;
+struct songAdd(struct song s,*count);
+void displaySong(struct song s)
+void main(){
+	int choice;
+	song s;
+	
+	do{
+		printf("------Menu------");
+		printf("\n1. Add song");
+		printf("\n2. display songs");
+		printf("\n0. Exit");
+	}
+	while()
+	switch(ch):
+		case 1{
+			
+			break;
+		}
+}
