@@ -1,0 +1,109 @@
+						Assignment No 2
+
+Q1)
+-  create table member(Member_Id int,Member_Name varchar(30),Member_Address varchar (50),Acc_Open_Date date,Membership_Type varchar(20),Fees_Paid decimal (10,2),Max_Books_Allowed int,Penalty_Amount decimal(10,2));
+
+- create table Books(Book_No int,Book_Name varchar(30),Author_Name varchar (30),Cost   decimal(10,2),Category varchar(15));
+
+- create table Issue(Lib_Issue_Id int,Book_No int,Member_Id int,Issue_Date date,Return_Date    date);
+
+Q2)
+- desc member;
+
+-  desc Books;
+
+- desc Issue;
+
+Q3)
+- drop table member;
+
+Q4)
+- create table member(Member_Id int,Member_Name varchar(30),Member_Address  varchar (50),Acc_Open_Date date,Membership_Type varchar(20),Fees_Paid decimal (10,2),Max_Books_Allowed int,Penalty_Amount decimal(10,2));
+
+-  alter table member
+    -> add primary key(Member_Id);
+
+- 
+
+Q5)
+- alter table member
+    -> modify column Member_Name varchar(40);
+
+Q6)
+- alter table Issue add column Reference varchar(30);
+
+Q7)
+-  alter table Issue drop column Reference;
+
+Q8)
+-  rename table Issue to Lib_Issue;
+
+Q9)
+-  insert into Member value(1,"Richa Sharma","Pune","10-12-05","Lifetime",25000,5,50);
+-  insert into Member (Member_Id,Member_Name,Member_Address,Acc_Open_Date,Membership_Type,Fees_Paid,Max_Books_Allowed) value   (2,"Garima Sen","Pune","2026-09-30","Annual",1000,3);
+
+Q10)
+-  insert into Member value(3,"Nikhil","Pune","2024-06-03","Monthly",2500,2,100);
+- insert into Member(Member_Id,Member_Name,Member_Address,Acc_Open_Date,Membership_Type,Fees_Paid,Max_Books_Allowed) value  (4,"Sahil","Pune","2025-10-03","Lifetime",30000,5);
+- insert into Member value(5,"Shantanu","Pune","2026-10-04","Annual",5000,5,50);
+- insert into Member value(6,"Vivek","Mumabi","2026-09-30","Monthly",3000,4,50);
+- insert into Member(Member_Id,Member_Name,Member_Address,Acc_Open_Date,Membership_Type,Fees_Paid,Max_Books_Allowed) value      (7,"Harshal","Pune","2025-07-05","Lifetime",50000,6);
+
+Q11)
+-  alter table Member modify column Member_Name varchar(20);
+
+Q12)
+- alter table Member add constraint Max_Books_Allowed check(Max_Books_Allowed<100);
+
+Q13)
+-  create table MemberBackup as
+    -> select * from Member;
+
+Q14)
+-  alter table member add constraint chk_Max_Books_Allowed check (Max_Books_Allowed<100);
+- alter table member add constraint chk_Penalty_Amount check (Penalty_Amount<=1000);
+
+
+Q15)
+-  drop table books;
+
+Q16)
+-  create table Book(Book_No int  primary key,Book_Name varchar(30) not null,Author_Name varchar(30),Cost decimal(10,2),Category    varchar(15) check (Category in ('System','Fiction','Database','RDBMs','Other','Science')));
+
+Q17)
+- insert into Book value (101,"Let us C","Denis Ritchie",450,"System"),(102,"Oracle Complete Ref","Loni",550,"Database"),(103,"Mastering   SQL","Loni",250,"Database"),(104,"PL SQL Ref","Scott Urman",750,"Database"),(105,"National Geographic","Adis Scott",1000,"Science");
+
+Q18)
+- insert into Book value (106,"The C Programming Language","Brian Kernighan",500,"System"),(107,"Clean Code","Robert   C.Martin",650,"Other"),(108,"Database System Concept","Abraham Silberschatz",800,"Database"),(109,"Java:The Complete   Reference","Herbert Schildt",700,"System"),(110,"Fundamentals of Physics","David Halliday",900,"Science");
+
+Q19)
+-  select * from Member;
+-  select * from Book;
+
+Q20)
+- drop table lib_issue;
+
+Q21)
+- CREATE TABLE Issue (Lib_Issue_Id INT PRIMARY KEY, Book_No INT,Member_Id INT, Issue_Date DATE,FOREIGN KEY (Book_No) REFERENCES Books(Book_No),FOREIGN KEY (Member_Id) REFERENCES Member(Member_Id));
+
+
+Q22)
+- insert into Issue value(7001,101,1,"2024-12-10"),(7002,102,2,"2024-12-25"),(7003,104,1,"2025-01-15"),(7004,101,1,"2025-02-04"),(7005,104,2,"2025-03-15"),(7006,101,3,"2025-0418");
+
+Q23)
+- Cannot add or update a child row: a foreign key constraint fails (`demo`.`issue`, CONSTRAINT `issue_ibfk_2` FOREIGN KEY (`Member_Id`)    REFERENCES `member` (`Member_Id`))
+
+Q24)
+- Cannot delete or update a parent row: a foreign key constraint fails (`demo`.`issue`, CONSTRAINT `issue_ibfk_2` FOREIGN KEY    (`Member_Id`) REFERENCES `member` (`Member_Id`))
+
+Q25)
+- update Issue set Return_Date=date_add(Issue_Date,interval 15 day) where lib_Issue_Id in (7004,7005);
+
+Q26)
+- delete from Issue where Member_Id=1 and Issue_Date="2006-12-10";
+
+Q27)
+- Cannot delete or update a parent row: a foreign key constraint fails (`demo`.`issue`, CONSTRAINT `issue_ibfk_1` FOREIGN KEY    (`Book_No`) REFERENCES `book` (`Book_No`))
+
+Q28)
+-  drop table Member,Issue,Book;
